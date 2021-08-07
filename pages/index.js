@@ -3,55 +3,137 @@ import {
   useColorMode,
   Heading,
   Text,
+  Stack,
+  SimpleGrid,
+  InputGroup,
+  InputLeftElement,
   Flex,
-  Stack
+  Input,
+  HStack,
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import Container from '../components/Container'
+import Card from '../components/Card'
+import { getAllFilesMatter } from '../lib/extract'
+import { Search2Icon } from '@chakra-ui/icons'
+import styled from '@emotion/styled'
+import DarkModeSwitch from '../components/DarkModeSwitch'
+import { bgColor, primaryTextColor, secondaryTextColor, iconColor } from '../styles/darkMode'
 
-export default function Index() {
+export default function Index({ posts }) {
     const { colorMode } = useColorMode()
     const [searchValue, setSearchValue] = useState('');
 
-    // const filteredBlogPosts = posts
-    // .filter((project) =>
-    // project.name.toLowerCase().includes(searchValue.toLowerCase())
-    // || project.description.toLowerCase().includes(searchValue.toLowerCase())
-    // );
+    const filteredPosts = posts
+        .filter((project) =>
+        project.slug.toLowerCase().includes(searchValue.toLowerCase())
+        || project.website_link.toLowerCase().includes(searchValue.toLowerCase())
+        || project.github_link.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
-    const colorSecondary = {
-        light: 'gray.700',
-        dark: 'gray.400'
-    }
+    // const secondaryTextColor = {
+    //     light: 'gray.700',
+    //     dark: 'gray.400'
+    // }
+    
+    const StickyNav = styled(Flex)`
+        position: sticky;
+        top: 0;
+        transition: height .5s, line-height .5s;
+        `
+
+
     return (
-        <Container>
-        <Head>
-            <title>Home - Uncryptd</title>
-        </Head>
+        <>
+            <StickyNav
+                flexDirection="row"
+                justifyContent="center"
+                alignItems="center"
+                maxWidth="1600px"
+                minWidth="356px"
+                width="100%"
+                bg={bgColor[colorMode]}
+                as="nav"
+                px={[2, 10, 12]}
+                py={10}
+                mt={8}
+                mb={[0, 0, -2]}
+                mx="auto"
+            >   
+                <HStack 
+                    spacing={4}
+                    justifyContent="auto"
+                    alignItems="center"
+                >
+                    <DarkModeSwitch />
+                    <InputGroup >
+                        <InputLeftElement
+                            pointerEvents="none"
+                            children={<Search2Icon/>}
+                    />
+                        <Input type="search" 
+                                autoFocus
+                                placeholder="Search something"
+                                color={secondaryTextColor[colorMode]}
+                                value={searchValue}
+                                onChange={(e) => setSearchValue(e.target.value)}
+                        />
+                    </InputGroup>
+                </HStack>
 
-        <Stack
-            as="main"
-            spacing={8}
-            justifyContent="center"
-            alignItems="flex-start"
-            m="0 auto 4rem auto"
-            maxWidth="800px"
-            px={2}
-        >
+                {/* <Heading>Dashboard: IMT2019</Heading> */}
+            </StickyNav >
             <Flex
+                as="main"
+                justifyContent="center"
                 flexDirection="column"
-                justifyContent="flex-start"
-                alignItems="flex-start"
-                maxWidth="650px"
+                bg={bgColor[colorMode]}
+                color={primaryTextColor[colorMode]}
+                px={[8, 10, 12]}
+                mt={[4, 8, 8]}
+                mx="auto"
             >
-                <Text mb={6} color={colorSecondary[colorMode]}>
-                    A dashboard to view all the submissions for Graded Assignment: 1 of CS 303(P) Software Engineering Lab course.
-                </Text>
-
-
+            <Head>
+                <title>Dashboard</title>
+            </Head>
+            <Stack
+                as="main"
+                spacing={8}
+                justifyContent="center"
+                alignItems="flex-start"
+                m="0 auto 4rem auto"
+                maxWidth={["270px", "550px", "1600px"]}
+                px={2}
+            >
+                <Flex
+                    flexDirection="column"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    maxWidth={["750px", "1000px", "1600px"]}
+                >
+                    <Text mb={6} color={secondaryTextColor[colorMode]}>
+                        A dashboard to view all the submissions for <strong>Graded Assignment: 1</strong> of CS 303(P) Software Engineering Lab course.
+                    </Text>
+                <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={8}>
+                    {!filteredPosts.length && 'Nothing found'}
+                    {filteredPosts.map((frontMatter) => <Card 
+                        key={frontMatter.slug} 
+                        imageURL="https://i.imgur.com/4ILisqH.jpeg"
+                        title={frontMatter.github_link.split("/")[3]}
+                        name={frontMatter.name}
+                        githubLink={frontMatter.github_link}
+                        deployLink={frontMatter.website_link} 
+                        slug={frontMatter.slug}   
+                        {...frontMatter} 
+                    />)}
+                </SimpleGrid>
+                </Flex>
+            </Stack>
             </Flex>
-
-        </Stack>
-        </Container>
+        </>
     )
+}
+
+export async function getStaticProps() {
+    const posts = await getAllFilesMatter('jsons')
+    return { props: { posts } }
 }

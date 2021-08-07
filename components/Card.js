@@ -5,7 +5,9 @@ import {
     Image,
     Skeleton,
     useColorMode,
-    ScaleFade
+    ScaleFade,
+    HStack,
+    Box
 } from '@chakra-ui/react'
 
 import {
@@ -13,15 +15,18 @@ import {
     FaExternalLinkAlt,
 } from 'react-icons/fa'
 
+
 import ReactGA from 'react-ga'
 import React, { useState } from 'react'
-import { primaryTextColor, iconColor, borderColor, shadowColor } from '../styles/darkMode'
+import { primaryTextColor, secondaryTextColor, iconColor, borderColor, shadowColor, iconHoverColor } from '../styles/darkMode'
 
 export default function Card({
     imageURL,
     title,
+    name,
     githubLink,
-    deployLink
+    deployLink,
+    slug
 }) {
     const { colorMode } = useColorMode()
     const [opacity, setOpacity] = useState(0)
@@ -39,7 +44,8 @@ export default function Card({
         <Stack
             bg="secondary"
             borderRadius="10px"
-            minH="320px"
+            minH={["290", "315", "340"]}
+            maxW={["290", "315", "340"]}
             maxH="500px"
             border="1px"
             borderColor={{ base: '#333', md: borderColor[colorMode] }}
@@ -48,18 +54,25 @@ export default function Card({
                 textDecoration: 'none'
             }}
             mt={4}
+            transition="0.3s"
             onMouseOver={() => setOpacity(1)}
             onMouseLeave={() => setOpacity(0)}
         >
         <ScaleFade in={true} transition={{ duration: 1 }}>
-            <Skeleton isLoaded={imageLoad} height='auto' m='auto' borderRadius="10px 10px 0px 0px">
+            <Skeleton isLoaded={imageLoad} 
+                minW={["280", "220", "250"]}
+                h={["200", "220", "250"]} 
+                px={1}
+                py={1}
+                borderRadius="10px 10px 0px 0px"
+            >
                 <Image
                     width={1250}
                     height={600}
-                    w="auto"
-                    h="auto"
+                    minW={["280", "220", "250"]}
+                    h={["200", "220", "250"]}
                     src={imageURL}
-                    transition="0.3s"
+                    transition="0.1s"
                     borderRadius="10px 10px 0px 0px"
                     alt="project image"
                     onLoad={() => setImageLoad(true)}
@@ -67,23 +80,44 @@ export default function Card({
             </Skeleton>
             <Stack px={4} py={2}>
                 <Stack isInline justifyContent="space-between" alignItems="center">
-                <Text fontSize="2xl" color={primaryTextColor[colorMode]}>
-                    <strong>{title}</strong>
-                </Text>
+                {title && (
+                        <Link
+                        isTruncated
+                        href={`https://www.github.com/${title}`}
+                        color={iconColor[colorMode]}
+                        _hover={{
+                            color:iconHoverColor[colorMode]
+                        }}
+                        >
+                        <Text                              
+                            _hover={{
+                                color:iconHoverColor[colorMode]
+                            }} 
+                            fontSize="2xl" 
+                            color={primaryTextColor[colorMode]}
+                        >
+                                <strong>{title}</strong>
+                        </Text>
+                    </Link>
+                )}
+                
                 <Stack
                     isInline
                     justifyContent="flex-end"
                     alignItems="center"
                     spacing={4}
-                >
+                    >
                     {githubLink && (
-                    <Link
+                        <Link
                         href={githubLink}
                         color={iconColor[colorMode]}
+                        _hover={{
+                            color:iconHoverColor[colorMode]
+                        }}
                         onClick={() =>
-                        handleClick(`githublink_${title.replace('@', '-at-')}`)
+                            handleClick(`githublink_${title.replace('@', '-at-')}`)
                         }
-                    >
+                        >
                         <FaGithub size={23} />
                     </Link>
                     )}
@@ -91,8 +125,11 @@ export default function Card({
                     <Link
                         href={deployLink}
                         color={iconColor[colorMode]}
+                        _hover={{
+                            color:iconHoverColor[colorMode]
+                        }}
                         onClick={() =>
-                        handleClick(`deploylink_${title.replace('@', '-at')}`)
+                            handleClick(`deploylink_${title.replace('@', '-at')}`)
                         }
                     >
                         <FaExternalLinkAlt size={20} />
@@ -100,6 +137,10 @@ export default function Card({
                     )}
                 </Stack>
             </Stack>
+            </Stack>
+            <Stack isInline justifyContent="space-between" alignItems="center">
+            <Box px={4} ><Text isTruncated color={secondaryTextColor[colorMode]}>{name}</Text></Box>
+            <Box px={4} ><Text color={secondaryTextColor[colorMode]}>{slug}</Text></Box>
             </Stack>
         </ScaleFade>
         </Stack>
