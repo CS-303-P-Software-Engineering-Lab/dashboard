@@ -36,7 +36,12 @@ export const linkColor = {
     dark: 'blue.400'
 };
 
+export const iconHoverColor = {
+    light: 'teal.600',
+    dark: 'teal.400'
+};
+
 export const shadowColor = {
-    light: '0px 8px 26px rgba(0, 0, 0, 0.1)',
-    dark: '0px 8px 26px rgba(255, 255, 255, 0.9)'
+    light: '0px 8px 26px rgba(0, 0, 0, 0.3)',
+    dark: '0px 8px 26px rgba(255, 255, 255, 0.3)'
 }
