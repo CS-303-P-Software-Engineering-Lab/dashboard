@@ -4,8 +4,5 @@ module.exports = {
     fallback: {
         "fs": false
     },
-  },
-  images: {
-    domains: ["picsum.photos"],
-  },
+  }
 }

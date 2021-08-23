@@ -24,6 +24,7 @@
     "react-ga": "^3.3.0",
     "react-icons": "^4.2.0",
     "react-scripts": "^1.1.5",
+    "screenshot-stream": "^4.2.0",
     "webshot": "^0.18.0"
   },
   "devDependencies": {
