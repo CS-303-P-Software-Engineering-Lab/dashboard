@@ -43,7 +43,6 @@ export default function Card({
     return (
         <Stack
             bg="secondary"
-            borderRadius="10px"
             minH={["290", "315", "340"]}
             maxW={["290", "315", "340"]}
             maxH="500px"
