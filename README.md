@@ -28,4 +28,4 @@ This will be the first graded task of your CS 303(P) Lab. In this task you would
 ## Check your changes
 - Once you have performed all these changes, the PR will be merged within 24 hrs.
 - Do get in touch with the TAs if your PR has not been merged within 24 hrs.
-- Once you have done all these, checkout your friends' portfolios on imt2019.vercel.app
+- Once you have done all these, checkout your friends' portfolios on [imt2019.vercel.app](https://imt2019.vercel.app)
