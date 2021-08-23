@@ -16,7 +16,7 @@
     "fs": "^0.0.1-security",
     "glob": "^7.1.7",
     "gray-matter": "^4.0.3",
-    "next": "11.0.1",
+    "next": "11.1.0",
     "pageres": "^6.2.3",
     "react": "17.0.2",
     "react-dev-utils": "^11.0.4",
