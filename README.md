@@ -10,6 +10,7 @@ This will be the first graded task of your CS 303(P) Lab. In this task you would
 ## Step 2: Commit changes
 - Find the `.json` file name corresponding to your roll number in the `data/jsons` folder.
     - For example if your roll number is `IMT2019001`, the file you are looking for is in the path `data/jsons/IMT2019001.json`
+    - You can find a demo in `data/jsons/IMT2018061.json`
 - Change the details in your corresponding JSON files. The details asked in the JSON files are
     - name: Your name.
     - github_link: Your portfolio's github link.
@@ -23,3 +24,8 @@ This will be the first graded task of your CS 303(P) Lab. In this task you would
 - You will find a `Contribute` button. Click on Open Pull Request.
 - Send pull request to the `dev` branch of the [repository dashboard](https://github.com/CS-303-P-Software-Engineering-Lab/dashboard).
 - Click on Pull Request and add comments if you like to.
+
+## Check your changes
+- Once you have performed all these changes, the PR will be merged within 24 hrs.
+- Do get in touch with the TAs if your PR has not been merged within 24 hrs.
+- Once you have done all these, checkout your friends' portfolios on imt2019.vercel.app
