@@ -14,14 +14,11 @@ import {
     FaGithub,
     FaExternalLinkAlt,
 } from 'react-icons/fa'
-// import captureWebsite from 'capture-website';
-// import fs from 'fs'
-// import pageres from 'pageres'
+
 import NextImage from 'next/image'
 import ReactGA from 'react-ga'
 import React, { useState } from 'react'
 import { primaryTextColor, secondaryTextColor, iconColor, borderColor, shadowColor, iconHoverColor } from '../styles/darkMode'
-import path from 'path'
 
 export default function Card({
     title,
@@ -34,7 +31,6 @@ export default function Card({
     const [opacity, setOpacity] = useState(0)
 
     const imageURL = `/webimage/${slug}/${slug}.png`
-    console.log(imageURL)
     const handleClick = (event) => {
         ReactGA.event({
             category: 'click',
@@ -155,7 +151,7 @@ export default function Card({
             </Stack>
             <Stack isInline justifyContent="space-between" alignItems="center">
             <Box px={4} >
-                <Text classname="nametextfile" color={secondaryTextColor[colorMode]}>
+                <Text className="nametextfile" color={secondaryTextColor[colorMode]}>
                     {name}
                 </Text>
             </Box>
