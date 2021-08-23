@@ -14,14 +14,16 @@ import {
     FaGithub,
     FaExternalLinkAlt,
 } from 'react-icons/fa'
-
-
+// import captureWebsite from 'capture-website';
+// import fs from 'fs'
+// import pageres from 'pageres'
+import NextImage from 'next/image'
 import ReactGA from 'react-ga'
 import React, { useState } from 'react'
 import { primaryTextColor, secondaryTextColor, iconColor, borderColor, shadowColor, iconHoverColor } from '../styles/darkMode'
+import path from 'path'
 
 export default function Card({
-    imageURL,
     title,
     name,
     githubLink,
@@ -31,6 +33,8 @@ export default function Card({
     const { colorMode } = useColorMode()
     const [opacity, setOpacity] = useState(0)
 
+    const imageURL = `/webimage/${slug}/${slug}.png`
+    console.log(imageURL)
     const handleClick = (event) => {
         ReactGA.event({
             category: 'click',
@@ -48,6 +52,7 @@ export default function Card({
             maxW={["290", "315", "340"]}
             maxH="500px"
             border="1px"
+            borderRadius="12px 12px 10px 10px"
             borderColor={{ base: '#333', md: borderColor[colorMode] }}
             _hover={{
                 boxShadow: shadowColor[colorMode],
@@ -60,23 +65,33 @@ export default function Card({
         >
         <ScaleFade in={true} transition={{ duration: 1 }}>
             <Skeleton isLoaded={imageLoad} 
-                minW={["280", "220", "250"]}
-                h={["200", "220", "250"]} 
-                px={1}
-                py={1}
-                borderRadius="10px 10px 0px 0px"
-            >
-                <Image
-                    width={1250}
-                    height={600}
                     minW={["280", "220", "250"]}
-                    h={["200", "220", "250"]}
-                    src={imageURL}
-                    transition="0.1s"
+                    h={["200", "220", "250"]} 
+                    px={1}
+                    py={1}
                     borderRadius="10px 10px 0px 0px"
-                    alt="project image"
-                    onLoad={() => setImageLoad(true)}
-                ></Image>
+            >
+                <Box minW={["280", "220", "250"]}
+                    h={["200", "220", "250"]}
+                    transition="0.1s"
+                    rounded="10px 10px 0px 0px"
+                >
+                    <>
+                    <NextImage
+                        className="webpic"
+                        width={1200}
+                        height={850}
+                        src={imageURL}
+                        alt="project image"
+                        onLoad={() => setImageLoad(true)}
+                    />
+                    <style jsx global>{`
+                        .webpic {
+                        border-radius: 10px 10px 0px 0px;
+                        }
+                    `}</style>
+                    </>
+                </Box>
             </Skeleton>
             <Stack px={4} py={2}>
                 <Stack isInline justifyContent="space-between" alignItems="center">
@@ -89,7 +104,7 @@ export default function Card({
                             color:iconHoverColor[colorMode]
                         }}
                         >
-                        <Text                              
+                        <Text                        
                             _hover={{
                                 color:iconHoverColor[colorMode]
                             }} 
@@ -139,7 +154,11 @@ export default function Card({
             </Stack>
             </Stack>
             <Stack isInline justifyContent="space-between" alignItems="center">
-            <Box px={4} ><Text isTruncated color={secondaryTextColor[colorMode]}>{name}</Text></Box>
+            <Box px={4} >
+                <Text classname="nametextfile" color={secondaryTextColor[colorMode]}>
+                    {name}
+                </Text>
+            </Box>
             <Box px={4} ><Text color={secondaryTextColor[colorMode]}>{slug}</Text></Box>
             </Stack>
         </ScaleFade>

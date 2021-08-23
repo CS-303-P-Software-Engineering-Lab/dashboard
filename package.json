@@ -13,17 +13,18 @@
     "@chakra-ui/react": "^1.6.5",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "capture-website": "^2.0.2",
-    "framer-motion": "^4.1.17",
     "fs": "^0.0.1-security",
+    "glob": "^7.1.7",
     "gray-matter": "^4.0.3",
     "next": "11.0.1",
+    "pageres": "^6.2.3",
     "react": "17.0.2",
     "react-dev-utils": "^11.0.4",
     "react-dom": "17.0.2",
     "react-ga": "^3.3.0",
     "react-icons": "^4.2.0",
-    "react-scripts": "^1.1.5"
+    "react-scripts": "^1.1.5",
+    "webshot": "^0.18.0"
   },
   "devDependencies": {
     "eslint": "7.32.0",

@@ -35,7 +35,7 @@ const GlobalStyle = ({ children }) => {
 	)
     }
     
-function Uncryptd({ Component, pageProps }) {
+function Dashboard({ Component, pageProps }) {
 	return (
 	    <ChakraProvider resetCSS theme={customTheme}>
 		    <GlobalStyle>
@@ -45,4 +45,4 @@ function Uncryptd({ Component, pageProps }) {
 	)
 }
 
-export default Uncryptd
+export default Dashboard

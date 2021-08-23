@@ -21,7 +21,7 @@ export const secondaryTextColor = {
 
 
 export const borderColor = {
-    light: 'gray.200',
+    light: 'gray.400',
     dark: 'gray.600'
 };
 
@@ -42,6 +42,6 @@ export const iconHoverColor = {
 };
 
 export const shadowColor = {
-    light: '0px 8px 26px rgba(0, 0, 0, 0.3)',
+    light: '0px 8px 26px rgba(0, 0, 0, 0.4)',
     dark: '0px 8px 26px rgba(255, 255, 255, 0.3)'
 }

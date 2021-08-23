@@ -24,22 +24,29 @@ export default function Index({ posts }) {
     const [searchValue, setSearchValue] = useState('');
 
     const filteredPosts = posts
+        .sort(function(a, b){
+            if( a.slug === b.slug ){
+                return 0;
+            } else if ( a.slug > b.slug ) {
+                return 1;
+            } else {
+                return -1;
+            }
+        })
         .filter((project) =>
-        project.slug.toLowerCase().includes(searchValue.toLowerCase())
+        project.website_link!=="https://google.com"
+        &&(project.slug.toLowerCase().includes(searchValue.toLowerCase())
         || project.website_link.toLowerCase().includes(searchValue.toLowerCase())
-        || project.github_link.toLowerCase().includes(searchValue.toLowerCase())
+        || project.github_link.toLowerCase().includes(searchValue.toLowerCase()))
     );
 
-    // const secondaryTextColor = {
-    //     light: 'gray.700',
-    //     dark: 'gray.400'
-    // }
-    
     const StickyNav = styled(Flex)`
-        position: sticky;
-        top: 0;
-        transition: height .5s, line-height .5s;
-        `
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    backdrop-filter: saturate(180%) blur(20px);
+    transition: background-color 0.1 ease-in-out;
+    `;
 
 
     return (
@@ -114,10 +121,10 @@ export default function Index({ posts }) {
                         A dashboard to view all the submissions for <strong>Graded Assignment: 1</strong> of CS 303(P) Software Engineering Lab course.
                     </Text>
                 <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={8}>
-                    {!filteredPosts.length && 'Nothing found'}
-                    {filteredPosts.map((frontMatter) => <Card 
+                    {!filteredPosts.length && 'Nothing found! Maybe just search a single term...'}
+                    {filteredPosts.map((frontMatter) => <Card
                         key={frontMatter.slug} 
-                        imageURL="https://i.imgur.com/4ILisqH.jpeg"
+                        imageURL={frontMatter.img_url}
                         title={frontMatter.github_link.split("/")[3]}
                         name={frontMatter.name}
                         githubLink={frontMatter.github_link}
