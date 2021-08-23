@@ -16,7 +16,7 @@ This will be the first graded task of your CS 303(P) Lab. In this task you would
     - github_link: Your portfolio's github link.
     - website_link: Your portfolio's link. Make sure it is in the format `http://<website url>.domain` or `https://<website url>.domain`
         - Valid URLs: `http://octocat.github.io/`, `https://www.google.com`
-        - Invalid URL format: `www.google`, `google.com`
+        - Invalid URL format: `www.google`, `google.com`, `www.google.com`
 - Commit the file.
 
 ## Step 3: Send a Pull Request
