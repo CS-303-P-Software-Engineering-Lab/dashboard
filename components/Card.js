@@ -92,12 +92,13 @@ export default function Card({
                 <Stack isInline justifyContent="space-between" alignItems="center">
                 {title && (
                         <Link
-                        isTruncated
-                        href={`https://www.github.com/${title}`}
-                        color={iconColor[colorMode]}
-                        _hover={{
-                            color:iconHoverColor[colorMode]
-                        }}
+                            isTruncated
+                            href={`https://www.github.com/${title}`}
+                            isExternal={true}
+                            color={iconColor[colorMode]}
+                            _hover={{
+                                color:iconHoverColor[colorMode]
+                            }}
                         >
                         <Text                        
                             _hover={{
@@ -121,6 +122,7 @@ export default function Card({
                         <Link
                         href={githubLink}
                         color={iconColor[colorMode]}
+                        isExternal
                         _hover={{
                             color:iconHoverColor[colorMode]
                         }}
@@ -135,6 +137,7 @@ export default function Card({
                     <Link
                         href={deployLink}
                         color={iconColor[colorMode]}
+                        isExternal
                         _hover={{
                             color:iconHoverColor[colorMode]
                         }}
