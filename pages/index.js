@@ -39,7 +39,9 @@ export default function Index({ posts }) {
         project.website_link!=="https://google.com"
         &&(project.slug.toLowerCase().includes(searchValue.toLowerCase())
         || project.website_link.toLowerCase().includes(searchValue.toLowerCase())
-        || project.github_link.toLowerCase().includes(searchValue.toLowerCase()))
+        || project.github_link.toLowerCase().includes(searchValue.toLowerCase())
+        || project.name.toLowerCase().includes(searchValue.toLowerCase())
+        )
     );
 
     const StickyNav = styled(Flex)`
