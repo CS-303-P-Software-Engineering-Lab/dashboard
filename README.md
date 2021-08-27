@@ -10,7 +10,6 @@ This will be the first graded task of your CS 303(P) Lab. In this task you would
 ## Step 2: Commit changes
 - Find the `.json` file name corresponding to your roll number in the `data/jsons` folder.
     - For example if your roll number is `IMT2019001`, the file you are looking for is in the path `data/jsons/IMT2019001.json`
-    - You can find a demo in `data/jsons/IMT2018061.json`
 - Change the details in your corresponding JSON files. The details asked in the JSON files are
     - name: Your name.
     - github_link: Your portfolio's github link.
