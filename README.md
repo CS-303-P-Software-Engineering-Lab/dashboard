@@ -31,3 +31,16 @@ This will be the first graded task of your CS 303(P) Lab. In this task you would
 - Once you have done all these, checkout your friends' portfolios on [imt2019.vercel.app](https://imt2019.vercel.app)
 
 PS: Mobile Users please pardon my CSS
+
+## Developer comments
+
+### Working model
+
+- Made using Next.js and ChakraUI
+- Images are loaded using NextImage component, advantages are that it is available in a webp format and they are lazy loaded by default, which is a very much required feature as you have dozens of images in the app, and you dont want to waste time loading all the images in the page.
+- JSON files are updated by students in `dev` branch. My backend script, pulls those changes, switches to main branch, merges dev to main, and saves the images in `webimage/IMT201xxxx` folder. This is completely done using the REST API that Github provides.
+- The images are generated using a package called Pageres available on npm. It crops an image to a specified size given the website. It then pushes the updates from local `main` to remote `main` branch.
+- This is hosted on vercel. Vercel then deploys the `main` branch.
+
+### Possible updates
+- Stream the images from server side instead of saving it in a repository.
